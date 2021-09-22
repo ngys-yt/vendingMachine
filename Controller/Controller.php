@@ -45,31 +45,7 @@
             } 
         }
 
-        // 入力された商品名の照合(ユーザー、管理者)
-        // errorの場合、ユーザー権限によってメニューの表示を変える
-        public function nameCollation($authority){
-            $productsName = readline();
-            $drinks = Drinks::getInstance();
-            $productsName = $drinks->getProductsName($productsName);
-
-            if($productsName == "error"){
-                echo "入力された商品名は存在しません\n";
-
-                switch($authority){
-
-                        case "user":
-                            $this->menu();
-                            break;
-
-                        case "admin":
-                            $this->adminMenu();
-                            break;
-                }
-            }
-
-            return $productsName;
-        }
-
+        
         // 1.(入金)が入力された場合の入金処理
         public function pay(){
             $money = Money::getInstance();
@@ -203,6 +179,32 @@
                     break;
             }
         }
+
+        // 入力された商品名の照合(ユーザー、管理者)
+        // errorの場合、ユーザー権限によってメニューの表示を変える
+        public function nameCollation($authority){
+            $productsName = readline();
+            $drinks = Drinks::getInstance();
+            $productsName = $drinks->getProductsName($productsName);
+
+            if($productsName == "error"){
+                echo "入力された商品名は存在しません\n";
+
+                switch($authority){
+
+                        case "user":
+                            $this->menu();
+                            break;
+
+                        case "admin":
+                            $this->adminMenu();
+                            break;
+                }
+            }
+
+            return $productsName;
+        }
+
 
         // 認証成功で管理者メニュー表示
         // 管理操作した後にメニュー表示に帰ってくるためにmenuメソッドを認証と分ける
