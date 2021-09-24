@@ -15,9 +15,8 @@
 
         // 最初にユーザーに選択肢を表示する
         public function menu(){
-            echo "1.入金 2.商品リスト 3.返金 4.購入 5.管理者\n";
+            echo "1.入金 2.商品リスト 3.返金 4.購入 5.管理者 6.終了\n";
             $menu = readline();
-            // 1〜5以外の入力をはじく
             switch($menu){
                 case 1:
                     $this->pay();
@@ -38,6 +37,9 @@
                 case 5:
                     $this->admin();
                     break;
+
+                case 6:
+                    exit();
 
                 default:
                     echo "再度入力してください\n";
@@ -240,6 +242,7 @@
 
                 default:
                     echo "再度入力してください\n";
+                    $this->adminMenu();
                     break;
             }
         }
@@ -250,7 +253,7 @@
 
             // 入力された商品名の照合
             $editName = $this->nameCollation("admin");
-
+            
             echo "新しい名前を入力してください\n";
             $insertName = readline();
 
@@ -302,7 +305,7 @@
 
             // 入力された商品名の照合
             $editStockName = $this->nameCollation("admin");
-
+            
             echo "新しい在庫数を入力してください\n";
             $insertStock = (int) readline();
 
