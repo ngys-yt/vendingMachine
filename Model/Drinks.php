@@ -14,27 +14,29 @@
 
         // 商品リスト
         private $products=[
-            "key1" => ["name","price","stock"],
-            "key2" => ["name","price","stock"],
-            "key3" => ["name","price","stock"]
+            ["name","price","stock"],
+            ["name","price","stock"],
+            ["name","price","stock"]
         ];
+    // name=>名前 price=>金額 stock=>在庫 として配列を作る
+    // データ依存のコードを書かない
 
         // 商品リストの初期化
         public function initializeProducts(){
-            $this->products["key1"][0] = "水";
-            $this->products["key2"][0] = "お茶";
-            $this->products["key3"][0] = "コーラ";
-            $this->products["key1"][1] = 100;
-            $this->products["key2"][1] = 120;
-            $this->products["key3"][1] = 160;
-            $this->products["key1"][2] = 5;
-            $this->products["key2"][2] = 3;
-            $this->products["key3"][2] = 2;
+            $this->products[0][0] = "水";
+            $this->products[1][0] = "お茶";
+            $this->products[2][0] = "コーラ";
+            $this->products[0][1] = 100;
+            $this->products[1][1] = 120;
+            $this->products[2][1] = 160;
+            $this->products[0][2] = 5;
+            $this->products[1][2] = 3;
+            $this->products[2][2] = 2;
         }
 
         // 商品の最低金額を取得
         public function minPrice(){
-            $minProductsPrice = min($this->products["key1"][1],$this->products["key2"][1],$this->products["key3"][1]);
+            $minProductsPrice = min($this->products[0][1],$this->products[1][1],$this->products[2][1]);
             return $minProductsPrice;
         }
 
@@ -64,16 +66,16 @@
         public function getProductsName($productsName){
 
             switch($productsName){
-                case $this->products["key1"][0]:
-                    return $this->products["key1"][0];
+                case $this->products[0][0]:
+                    return $this->products[0][0];
                     break;
 
-                case $this->products["key2"][0]:
-                    return $this->products["key2"][0];
+                case $this->products[1][0]:
+                    return $this->products[1][0];
                     break;
 
-                case $this->products["key3"][0]:
-                    return $this->products["key3"][0];
+                case $this->products[2][0]:
+                    return $this->products[2][0];
                     break;
 
                 default:
@@ -86,16 +88,16 @@
         public function getProductsStock($productsName){
 
             switch($productsName){
-                case $this->products["key1"][0]:
-                    return $this->products["key1"][2];
+                case $this->products[0][0]:
+                    return $this->products[0][2];
                     break;
 
-                case $this->products["key2"][0]:
-                    return $this->products["key2"][2];
+                case $this->products[1][0]:
+                    return $this->products[1][2];
                     break;
 
-                case $this->products["key3"][0]:
-                    return $this->products["key3"][2];
+                case $this->products[2][0]:
+                    return $this->products[2][2];
                     break;
             }
         }
@@ -104,16 +106,16 @@
         public function getProductsPrice($productsName){
 
             switch($productsName){
-                case $this->products["key1"][0]:
-                    return $this->products["key1"][1];
+                case $this->products[0][0]:
+                    return $this->products[0][1];
                     break;
 
-                case $this->products["key2"][0]:
-                    return $this->products["key2"][1];
+                case $this->products[1][0]:
+                    return $this->products[1][1];
                     break;
 
-                case $this->products["key3"][0]:
-                    return $this->products["key3"][1];
+                case $this->products[2][0]:
+                    return $this->products[2][1];
                     break;
             }
         }
@@ -122,16 +124,16 @@
         public function buy($productsName){
 
             switch($productsName){
-                case $this->products["key1"][0]:
-                    $this->products["key1"][2] = $this->products["key1"][2]-1;
+                case $this->products[0][0]:
+                    $this->products[0][2] = $this->products[0][2]-1;
                     break;
 
-                case $this->products["key2"][0]:
-                    $this->products["key2"][2] = $this->products["key2"][2]-1;
+                case $this->products[1][0]:
+                    $this->products[1][2] = $this->products[1][2]-1;
                     break;
 
-                case $this->products["key3"][0]:
-                    $this->products["key3"][2] = $this->products["key3"][2]-1;
+                case $this->products[2][0]:
+                    $this->products[2][2] = $this->products[2][2]-1;
                     break;
             }
         }
@@ -141,24 +143,24 @@
         // 入力された商品名が既に存在している場合はエラーを返す
         public function setProductsName($editName ,$insertName){
 
-            if($insertName == $this->products["key1"][0] 
-                || $insertName == $this->products["key2"][0] 
-                || $insertName == $this->products["key3"][0]){
+            if($insertName == $this->products[0][0] 
+                || $insertName == $this->products[1][0] 
+                || $insertName == $this->products[2][0]){
 
                 return "error";
             }
             
             switch($editName){
-                case $this->products["key1"][0]:
-                    return $this->products["key1"][0] = $insertName;
+                case $this->products[0][0]:
+                    return $this->products[0][0] = $insertName;
                     break;
                 
-                case $this->products["key2"][0]:
-                    return $this->products["key2"][0] = $insertName;
+                case $this->products[1][0]:
+                    return $this->products[1][0] = $insertName;
                     break;
 
-                case $this->products["key3"][0]:
-                    return $this->products["key3"][0] = $insertName;
+                case $this->products[2][0]:
+                    return $this->products[2][0] = $insertName;
                     break;
             }
         }
@@ -167,16 +169,16 @@
         public function setProductsPrice($editPriceName ,$insertPrice){
 
             switch($editPriceName){
-                case $this->products["key1"][0]:
-                    return $this->products["key1"][1] = $insertPrice;
+                case $this->products[0][0]:
+                    return $this->products[0][1] = $insertPrice;
                     break;
                 
-                case $this->products["key2"][0]:
-                    return $this->products["key2"][1] = $insertPrice;
+                case $this->products[1][0]:
+                    return $this->products[1][1] = $insertPrice;
                     break;
 
-                case $this->products["key3"][0]:
-                    return $this->products["key3"][1] = $insertPrice;
+                case $this->products[2][0]:
+                    return $this->products[2][1] = $insertPrice;
                     break;
             }
         }
@@ -185,17 +187,22 @@
         public function setProductsStock($editStockName,$insertStock){
 
             switch($editStockName){
-                case $this->products["key1"][0]:
-                    return $this->products["key1"][2] = $insertStock;
+                case $this->products[0][0]:
+                    return $this->products[0][2] = $insertStock;
                     break;
                 
-                case $this->products["key2"][0]:
-                    return $this->products["key2"][2] = $insertStock;
+                case $this->products[1][0]:
+                    return $this->products[1][2] = $insertStock;
                     break;
 
-                case $this->products["key3"][0]:
-                    return $this->products["key3"][2] = $insertStock;
+                case $this->products[2][0]:
+                    return $this->products[2][2] = $insertStock;
                     break;
+                
+                // foreach ($this->products as $val) {
+                //     if ($val == $editStockName) {
+                //         return $this->products[2] = $insertStock;
+                //     }
             }
         }
     }
